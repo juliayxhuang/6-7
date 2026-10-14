@@ -1,95 +1,15 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#000000">
-  <meta name="description" content="6-7 — an experimental digital publication by Julia Huang.">
-  <title>6-7 — Julia Huang</title>
-  <link rel="stylesheet" href="./style.css?v=18">
-  <script src="./content/publication.js?v=1" defer></script>
-  <script src="./app.js?v=14" defer></script>
-</head>
-<body>
-  <section class="gateway" id="gateway" aria-label="Entry screen">
-    <div class="gateway-center">
-      <button id="cameraButton" class="gateway-title" type="button" aria-label="What is 6-7? Enable camera for the gesture"><span>What</span><span>is</span><span>6-7?</span></button>
-      <div class="camera-wrap" id="cameraWrap" hidden>
-        <video id="cameraVideo" autoplay muted playsinline aria-label="Camera preview"></video>
-        <div class="camera-guides" aria-hidden="true"><span>6</span><span>7</span></div>
-        <div id="cameraStatus" class="camera-status" role="status">[6-7 GESTURE]</div>
-      </div>
-    </div>
-    <button id="skipButton" class="gateway-skip" type="button">ENTER WITHOUT CAMERA ↗</button>
-  </section>
-
-  <div class="site" id="site" hidden>
-    <div class="floating-actions">
-      <button id="typeButton" type="button" aria-label="Typography and accessibility controls" aria-expanded="false" aria-controls="typePanel">+</button>
-      <button id="menuButton" class="menu-button" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navOverlay">#</button>
-    </div>
-
-    <main class="columns" id="columns">
-      <aside class="rail panel-scroll" aria-label="Glossary">
-        <div id="glossaryList" class="glossary-list"></div>
-      </aside>
-
-      <section class="feed panel-scroll" id="feed" aria-label="Publication text" tabindex="-1"></section>
-
-      <aside class="media panel-scroll" id="media" aria-label="Media and ASCII stream">
-        <div class="media-card lime media-card-tall tilt" tabindex="0"><div class="media-card-inner"><span class="block-id">[IMAGE PLACEHOLDER / 01]</span></div></div>
-        <div class="media-card lime tilt" tabindex="0"><div class="media-card-inner"><span class="block-id">[IMAGE PLACEHOLDER / 02]</span></div></div>
-        <div class="media-card lime media-card-wide tilt" tabindex="0"><div class="media-card-inner"><span class="block-id">[IMAGE PLACEHOLDER / 03]</span></div></div>
-        <div class="media-card cyan tilt" tabindex="0"><div class="media-card-inner"><span class="block-id">[ASCII PLACEHOLDER / 04]</span></div></div>
-        <div class="media-card lime tilt" tabindex="0"><div class="media-card-inner"><span class="block-id">[IMAGE PLACEHOLDER / 05]</span></div></div>
-      </aside>
-    </main>
-
-    <footer class="ascii-footer" aria-label="6-7 ASCII hands">
-      <pre class="ascii-footer-art" aria-hidden="true">7777777777777777777777<span class="ascii-six">66666666</span>7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777
-777777777777777777<span class="ascii-six">6666666</span>77<span class="ascii-six">66666</span>77777777777777777777777777777777777777777777777777777777777777777777777777777777777777
-7777777777777777<span class="ascii-six">666</span>777777777777<span class="ascii-six">666</span>777777777777777777777777777777777777777777777777777777777777777777777777777777777777
-777777777777777<span class="ascii-six">66</span>7777777777777<span class="ascii-six">6666</span>777777777777777777777777777777777777777777777777777777777777777777777777777777777777
-77777777777777<span class="ascii-six">66</span>77<span class="ascii-six">66</span>7777777777<span class="ascii-six">666666</span>7777777777777777777777777777777777777777777777777777777777777777777777777777777777
-77777777777777<span class="ascii-six">66666</span>77777777777777777<span class="ascii-six">666</span>7777777777777777777777777777777777777777777777777<span class="ascii-six">66</span>7777777777777777777777777777
-7777777777777<span class="ascii-six">666</span>7777777777777777777777<span class="ascii-six">666</span>77777777777777777777777777777777777777777<span class="ascii-six">66666666666666</span>7777777777777777777777
-77777777777<span class="ascii-six">66</span>777777777777777777777777777<span class="ascii-six">66</span>77777777777777777777777777777777777777<span class="ascii-six">66</span>7777777777777<span class="ascii-six">666</span>77777777777777777777
-7777777777<span class="ascii-six">66</span>77777777777777777777777777777<span class="ascii-six">66</span>77777<span class="ascii-six">6</span>77<span class="ascii-six">6</span>777777777777777777777777777<span class="ascii-six">66</span>7777777777777777<span class="ascii-six">66</span>7777777777777777777
-777777777<span class="ascii-six">66</span>77777777777777777777777777777777<span class="ascii-six">66</span>77<span class="ascii-six">666666</span>77777777777777777777777777<span class="ascii-six">66</span>77<span class="ascii-six">6</span>777777777<span class="ascii-six">666666</span>7777777777777777777
-77777777<span class="ascii-six">66</span>77777777777777<span class="ascii-six">66</span>77777777777777777<span class="ascii-six">6666666666</span>7777777777777777777777777<span class="ascii-six">66666</span>77777777777777<span class="ascii-six">66666</span>7777777777777777
-7777777<span class="ascii-six">66</span>7777777777777<span class="ascii-six">66</span>77777777777777777<span class="ascii-six">6666666</span>777<span class="ascii-six">66</span>777777777777777777777777<span class="ascii-six">66</span>77777777777777777777777<span class="ascii-six">66</span>77777777777777
-777777<span class="ascii-six">66</span>777777777<span class="ascii-six">666666</span>777777777777777777<span class="ascii-six">6666666</span>777<span class="ascii-six">66</span>7777777777777777777777<span class="ascii-six">66</span>77777777777777777777777777<span class="ascii-six">6666</span>77777777777
-77777<span class="ascii-six">66</span>7777777<span class="ascii-six">66</span>77<span class="ascii-six">66</span>7777777777777777<span class="ascii-six">6666666</span>7<span class="ascii-six">666</span>7777<span class="ascii-six">6</span>7777777777777777777777<span class="ascii-six">66</span>777777777777777777777777777777<span class="ascii-six">6</span>77777777777
-777<span class="ascii-six">666</span>77777<span class="ascii-six">666</span>7<span class="ascii-six">66</span>77777777777777777<span class="ascii-six">666</span>77<span class="ascii-six">6666</span>777<span class="ascii-six">666</span>7<span class="ascii-six">66</span>777777777777777777777<span class="ascii-six">66</span>77777777777777777777777777777777<span class="ascii-six">66</span>777777777
-7<span class="ascii-six">666</span>777777<span class="ascii-six">666</span>777<span class="ascii-six">66</span>777777777777<span class="ascii-six">66666</span>777<span class="ascii-six">6666</span>7777<span class="ascii-six">66</span>7777777777777777777777777<span class="ascii-six">66</span>777777777777777<span class="ascii-six">66</span>7777777777777777<span class="ascii-six">666</span>7777777
-<span class="ascii-six">6</span>777777777<span class="ascii-six">66</span>77777<span class="ascii-six">66</span>777777<span class="ascii-six">6666666666</span>777<span class="ascii-six">6666</span>777<span class="ascii-six">666</span>77777777777777777<span class="ascii-six">666</span>7777<span class="ascii-six">66</span>777777777777777777<span class="ascii-six">66666</span>77<span class="ascii-six">6</span>7777777777<span class="ascii-six">666</span>77777
-<span class="ascii-six">6666666</span>7<span class="ascii-six">66</span>77777777<span class="ascii-six">66</span>7777777<span class="ascii-six">666</span>7777<span class="ascii-six">66</span>7777<span class="ascii-six">66</span>77<span class="ascii-six">666</span>7777777777777777<span class="ascii-six">6666666</span>7<span class="ascii-six">66</span>7777777777777777777777<span class="ascii-six">6666</span>77<span class="ascii-six">6666</span>7777777<span class="ascii-six">6</span>7<span class="ascii-six">666</span>7
-777<span class="ascii-six">6</span>77<span class="ascii-six">66</span>77777777777<span class="ascii-six">66</span>7777<span class="ascii-six">666</span>77777<span class="ascii-six">666</span>777<span class="ascii-six">6</span>777777777777777777777777<span class="ascii-six">6666</span>7<span class="ascii-six">66</span>77<span class="ascii-six">66</span>7777777777777777777777777<span class="ascii-six">6666666</span>777777777<span class="ascii-six">66</span>
-77777777777777777777<span class="ascii-six">66</span>77<span class="ascii-six">666</span>777<span class="ascii-six">66666</span>777<span class="ascii-six">66</span>777777777777777777777777<span class="ascii-six">6666</span>7<span class="ascii-six">66666</span>7<span class="ascii-six">66</span>7<span class="ascii-six">666</span>7777777777777777777<span class="ascii-six">66</span>7777<span class="ascii-six">666</span>777777<span class="ascii-six">666</span>
-777777777777777777777<span class="ascii-six">66</span>777777777<span class="ascii-six">66</span>77<span class="ascii-six">666</span>77777777777777777777777777<span class="ascii-six">66</span>777<span class="ascii-six">6666666666666</span>7777777777777777<span class="ascii-six">66</span>7777777<span class="ascii-six">66666666</span>77
-7777777777777777777777<span class="ascii-six">66</span>7777777<span class="ascii-six">6666666</span>777777777777777777777777777<span class="ascii-six">666</span>777<span class="ascii-six">66</span>77<span class="ascii-six">66666</span>777<span class="ascii-six">666666</span>7<span class="ascii-six">666</span>777777<span class="ascii-six">66</span>77777777777777777
-77777777777777777777777<span class="ascii-six">66666666</span>777777777777777777777777777777777777<span class="ascii-six">66</span>77<span class="ascii-six">66</span>7777<span class="ascii-six">6666</span>777<span class="ascii-six">66666666</span>777777<span class="ascii-six">66</span>777777777777777777
-7777777777777777777777777<span class="ascii-six">6666</span>777777777777777777777777777777777777777<span class="ascii-six">666666</span>7777<span class="ascii-six">666</span>77<span class="ascii-six">66</span>777777<span class="ascii-six">6666</span>777<span class="ascii-six">66</span>777777777777777777
-777777777777777777777777777777777777777777777777777777777777777777777777<span class="ascii-six">666</span>777<span class="ascii-six">66</span>777<span class="ascii-six">66666666</span>77<span class="ascii-six">666</span>7<span class="ascii-six">66</span>7777777777777777777
-77777777777777777777777777777777777777777777777777777777777777777777777777<span class="ascii-six">66666666</span>7777<span class="ascii-six">6666</span>7777777<span class="ascii-six">66</span>7777777777777777777
-77777777777777777777777777777777777777777777777777777777777777777777777777777777<span class="ascii-six">6666</span>777<span class="ascii-six">66</span>7777777<span class="ascii-six">66</span>77777777777777777777
-7777777777777777777777777777777777777777777777777777777777777777777777777777777777<span class="ascii-six">6666666666666666</span>77777777777777777777
-7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777<span class="ascii-six">66</span>77<span class="ascii-six">6</span>7777777777777777777777
-7777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777</pre>
-    </footer>
-
-    <div class="type-panel" id="typePanel" hidden role="region" aria-label="Typography controls"></div>
-
-    <div class="nav-overlay" id="navOverlay" hidden role="dialog" aria-modal="true" aria-label="Navigation">
-      <canvas class="nav-background" id="navBackground" aria-hidden="true"></canvas>
-      <div class="overlay-top"><button id="closeMenu" aria-label="Close navigation">X</button></div>
-      <nav class="overlay-grid" aria-label="Main pages">
-        <button class="nav-link nav-home" data-route="home" type="button"><span class="nav-base">#Home</span><span class="nav-echo" aria-hidden="true">#Home</span></button>
-        <button class="nav-link nav-guide" data-route="guide" type="button"><span class="nav-base">#Guide to<br>Internet Slang</span><span class="nav-echo" aria-hidden="true">#Guide to<br>Internet Slang</span></button>
-        <button class="nav-link nav-interviews" data-route="interviews" type="button"><span class="nav-base">#Interviews</span><span class="nav-echo" aria-hidden="true">#Interviews</span></button>
-        <button class="nav-link nav-about" data-route="credits" type="button"><span class="nav-base">#About</span><span class="nav-echo" aria-hidden="true">#About</span></button>
-      </nav>
-    </div>
-  </div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="6-7 — an experimental digital publication by Julia Huang." />
+    <title>6-7 — Julia Huang</title>
+    <script type="module" crossorigin src="/assets/index-C94D-TmE.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BGXnA1n9.css">
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
 </html>
