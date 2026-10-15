@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted, watch } from 'vue'
 
 const props = defineProps({ open: Boolean, route: { type: String, default: 'home' }, cursorSize: { type: Number, default: 1 } })
-const emit = defineEmits(['close', 'navigate'])
+const emit = defineEmits(['close', 'navigate', 'scroll'])
 const canvas = ref(null)
 const titleCanvas = ref(null)
 const pixel = 8
@@ -86,7 +86,7 @@ function stamp(x, y, overName = false) {
       if (!overName && titleRects.some(rect => cellX >= rect.left && cellX <= rect.right && cellY >= rect.top && cellY <= rect.bottom)) continue
       const key = `${col}:${row}`
       if (overName ? titlePixels.has(key) : painted.has(key)) continue
-      if (Math.random() < (overName ? .4 : .23)) continue
+      if (Math.random() < (overName ? .14 : .1)) continue
       const colorPick = Math.random()
       const color = colorPick < .52 ? colors[0] : colorPick < .86 ? colors[1] : colors[2]
       if (overName) addTitlePixel(key, col * pixel, row * pixel, color)
@@ -127,14 +127,16 @@ onUnmounted(() => { window.removeEventListener('resize', resetCanvas); window.re
 </script>
 
 <template>
-  <div class="layout-wrapper" :class="[route, { 'nav-open': open }]">
+  <div class="layout-wrapper" :class="[route, { 'nav-open': open }]" @scroll="emit('scroll', $event)">
     <div id="canvas-bg" class="canvas-layer" aria-hidden="true"><canvas ref="canvas"></canvas></div>
     <canvas ref="titleCanvas" class="title-pixels" aria-hidden="true"></canvas>
-    <main class="columns-container">
+    <main v-if="route === 'guide'" class="guide-surface"><slot name="guide" /></main>
+    <main v-else class="columns-container">
       <section class="column"><slot name="column-1" /></section>
       <section class="column"><slot name="column-2" /></section>
       <section class="column"><slot name="column-3" /></section>
     </main>
+    <slot name="footer" />
     <nav v-if="open" id="navOverlay" class="nav-overlay" aria-label="Main pages">
       <button class="nav-close" type="button" aria-label="Close navigation" @click="emit('close')">X</button>
       <div class="nav-content">
