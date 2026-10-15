@@ -74,7 +74,7 @@
 .bibliography-drawer::-webkit-scrollbar{display:none}
 .bibliography-drawer.open{transform:translateX(0);visibility:visible;transition:transform .38s cubic-bezier(.22,1,.36,1),visibility 0s}
 .bibliography-drawer h1{margin:0 0 18px;color:var(--cyan);font:400 min(var(--header-size),7vw)/1.03 var(--display);letter-spacing:.055em;font-kerning:none}
-.bibliography-drawer p{font-size:var(--body-size);line-height:1.12;margin:0 0 .7em;padding-left:1.4em;text-indent:-1.4em;overflow-wrap:anywhere}
+.bibliography-drawer p{color:var(--cyan);font-size:var(--body-size);line-height:1.12;margin:0 0 .7em;padding-left:1.4em;text-indent:-1.4em;overflow-wrap:anywhere}
 @media(max-width:850px){.layout-wrapper.credits .about-section{margin:95px 0 3em 42%}.bibliography-drawer{width:57vw}}
 @media(max-width:600px){.layout-wrapper.credits .feed{padding:20px 24px 60px}.layout-wrapper.credits .about-section{margin:100px 0 3em 0}.bibliography-drawer{width:88vw;padding:100px 24px 50px}.bibliography-edge{width:14px}}
 

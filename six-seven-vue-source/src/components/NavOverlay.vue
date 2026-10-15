@@ -51,6 +51,11 @@ function clearTitlePixels() {
   titleCanvas.value?.getContext('2d').clearRect(0, 0, window.innerWidth, window.innerHeight)
   titlePixels.clear()
 }
+function clearCanvas() {
+  canvas.value?.getContext('2d').clearRect(0, 0, window.innerWidth, window.innerHeight)
+  painted.clear()
+  lastPoint = null
+}
 function renderTitlePixels(now) {
   const ctx = titleCanvas.value?.getContext('2d')
   if (!ctx) { titleFrame = 0; return }
@@ -121,9 +126,10 @@ function onPointerMove(event) {
   lastPoint = point
 }
 function onPointerOut(event) { if (!event.relatedTarget) { lastPoint = null; activeName = null } }
-watch(() => props.open, open => { if (open) resetCanvas(); else { lastPoint = null; clearTitlePixels() } })
-onMounted(() => { resetCanvas(); window.addEventListener('resize', resetCanvas); window.addEventListener('pointermove', onPointerMove); window.addEventListener('pointerout', onPointerOut) })
-onUnmounted(() => { window.removeEventListener('resize', resetCanvas); window.removeEventListener('pointermove', onPointerMove); window.removeEventListener('pointerout', onPointerOut); cancelAnimationFrame(titleFrame) })
+watch(() => props.open, open => { if (open) resetCanvas(); else { clearCanvas(); clearTitlePixels() } })
+function onResize() { if (props.open) resetCanvas() }
+onMounted(() => { if (props.open) resetCanvas(); window.addEventListener('resize', onResize); window.addEventListener('pointermove', onPointerMove); window.addEventListener('pointerout', onPointerOut) })
+onUnmounted(() => { window.removeEventListener('resize', onResize); window.removeEventListener('pointermove', onPointerMove); window.removeEventListener('pointerout', onPointerOut); cancelAnimationFrame(titleFrame) })
 </script>
 
 <template>
